@@ -8,8 +8,8 @@ module Api
       begin
         @user = User.find(id: params[:id])
         render json: { user: user }
-      rescue => exception
-        render json: { error: exception.message }
+      rescue => e
+        render json: { error: { message: e.message } }
       end
     end
   end
