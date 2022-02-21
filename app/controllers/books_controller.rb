@@ -1,6 +1,6 @@
 class Api::BooksController < ApplicationController
   def index
-    @books = Book.all.with_attached_image
+    @books = Book.all
     render json: @books
   end
 
@@ -28,7 +28,7 @@ class Api::BooksController < ApplicationController
   private
 
   def set_book
-    @book = Book.with_attached_image.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def book_params

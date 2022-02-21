@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+Book.create(
+    title: 'El Coronel no tiene quien le escriba',
+    author: 'Gabriel Garcia Marquez',
+)
