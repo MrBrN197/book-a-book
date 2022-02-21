@@ -5,12 +5,10 @@ module Api
     end
 
     def show
-      begin
-        @user = User.find(id: params[:id])
-        render json: { user: user }
-      rescue => e
-        render json: { error: { message: e.message } }
-      end
+      @user = User.find(params[:id])
+      render json: { user: @user }
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { error: { message: e.message } }
     end
   end
 end
