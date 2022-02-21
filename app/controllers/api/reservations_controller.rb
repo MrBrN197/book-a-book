@@ -6,11 +6,17 @@ class Api::ReservationsController < ApplicationController
 
   def show
     reservation = retrieve_user
+    reservation = retrieve_user.reservations.find(params[:id])
     data_response(reservation, "Data for reservation #{params[:id]}")
   end
 
   def create
-    new_reservation = retrieve_user.reservations.new(reservation_params)
+    user = User.find(reservation_params[:user_id])
+    date = DatTime.parse(reservation_params(:reservation_date))
+    book = Book.find(reservation_params[:book_id])
+    city = reservation_params(:city)
+    print date
+    new_reservation = user.reservations.new(reservation_date: date, city: city, book: book)
     if new_reservation.save
       data_response(new_reservation, 'Reservation Created')
     else
@@ -36,7 +42,7 @@ class Api::ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.permit(:reservation_date, :city, :user_id, :book_id)
+    params.require(:reservation).permit(:reservation_date, :city, :user_id, :book_id)
   end
 
   def data_response(data, message)
