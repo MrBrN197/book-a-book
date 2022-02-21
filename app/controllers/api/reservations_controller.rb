@@ -1,6 +1,6 @@
 class Api::ReservationsController < ApplicationController
   def index
-    reservations = current_user.reservations.includes(:book)
+    reservations = retrieve_user.reservations
     data_response(reservations, 'List of all reservations')
   end
 
@@ -10,11 +10,11 @@ class Api::ReservationsController < ApplicationController
   end
 
   def create
-    new_reservation = current_user.reservations.new(reservation_params)
+    new_reservation = retrieve_user.reservations.new(reservation_params)
     if new_reservation.save
       data_response(new_reservation, 'Reservation Created')
     else
-      render json: new_reservation.errors, status: :bad_request, message: 'Operation failed'
+      render json: {errors: new_reservation.errors, message: 'Operation failed'}, status: :bad_request, 
     end
   end
 
@@ -29,7 +29,7 @@ class Api::ReservationsController < ApplicationController
     if reservation.update(reservation_params)
       data_response(reservation, 'Reservation Updated')
     else
-      render json: reservation.errors, status: :bad_request, message: 'Operation failed'
+      render json: {reservation.errors, message: 'Operation failed'}, status: :bad_request, 
     end
   end
 
@@ -40,10 +40,10 @@ class Api::ReservationsController < ApplicationController
   end
 
   def data_response(data, message)
-    render json: data, message: message, except: [:created_at, :updated_at] 
+    render json: {data: data, message: message}, except: [:created_at, :updated_at]
   end
 
   def retrieve_user
-    current_user.reservations.find(params[:id])
+    User.find(params[:user_id])
   end
 end
