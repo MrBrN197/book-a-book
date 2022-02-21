@@ -4,9 +4,9 @@ class Api::BooksController < ApplicationController
     render json: @books
   end
 
-  def show; 
-  @book = Book.find(params[:id])
-  render json: @book, status: :ok
+  def show
+    @book = Book.find(params[:id])
+    render json: @book, status: :ok
   end
 
   def create
