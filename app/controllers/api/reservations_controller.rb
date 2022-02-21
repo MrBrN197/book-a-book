@@ -14,7 +14,7 @@ class Api::ReservationsController < ApplicationController
     if new_reservation.save
       data_response(new_reservation, 'Reservation Created')
     else
-      render json: {errors: new_reservation.errors, message: 'Operation failed'}, status: :bad_request, 
+      render json: { errors: new_reservation.errors, message: 'Operation failed' }, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class Api::ReservationsController < ApplicationController
     if reservation.update(reservation_params)
       data_response(reservation, 'Reservation Updated')
     else
-      render json: {reservation.errors, message: 'Operation failed'}, status: :bad_request, 
+      render json: { data: reservation.errors, message: 'Operation failed' }, status: :unprocessable_entity
     end
   end
 
@@ -40,7 +40,7 @@ class Api::ReservationsController < ApplicationController
   end
 
   def data_response(data, message)
-    render json: {data: data, message: message}, except: [:created_at, :updated_at]
+    render json: { data: data, message: message }, except: %i[created_at updated_at]
   end
 
   def retrieve_user
