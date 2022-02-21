@@ -1,32 +1,49 @@
 class Api::ReservationsController < ApplicationController
   def index
     reservations = current_user.reservations.includes(:book)
-    render json: reservations, message: 'List of all reservations', except: [:created_at, :updated_at]
+    data_response(reservations, 'List of all reservations')
   end
 
   def show
-    reservation = current_user.reservations.find(params[:id])
-    render json: reservation, message: "Data for reservation #{params[:id]}", except: [:created_at, :updated_at]
+    reservation = retrieve_user
+    data_response(reservation, "Data for reservation #{params[:id]}")
   end
 
   def create
     new_reservation = current_user.reservations.new(reservation_params)
     if new_reservation.save
-      render json: new_reservation, message: 'Reservation Created', except: [:created_at, :updated_at]
+      data_response(new_reservation, 'Reservation Created')
     else
       render json: new_reservation.errors, status: :bad_request, message: 'Operation failed'
     end
   end
 
   def destroy
-    reservation = current_user.reservations.find(params[:id])
+    reservation = retrieve_user
     reservation.destroy
-    render json: reservation, message: 'Reservation Deleted', except: [:created_at, :updated_at]
+    data_response(reservation, 'Reservation Deleted')
+  end
+
+  def update
+    reservation = retrieve_user
+    if reservation.update(reservation_params)
+      data_response(reservation, 'Reservation Updated')
+    else
+      render json: reservation.errors, status: :bad_request, message: 'Operation failed'
+    end
   end
 
   private
 
   def reservation_params
     params.permit(:reservation_date, :city, :user_id, :book_id)
+  end
+
+  def data_response(data, message)
+    render json: data, message: message, except: [:created_at, :updated_at] 
+  end
+
+  def retrieve_user
+    current_user.reservations.find(params[:id])
   end
 end
