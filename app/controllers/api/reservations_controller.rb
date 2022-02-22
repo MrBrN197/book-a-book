@@ -5,18 +5,18 @@ class Api::ReservationsController < ApplicationController
   end
 
   def show
-    reservation = retrieve_user
-    reservation = retrieve_user.reservations.find(params[:id])
-    data_response(reservation, "Data for reservation #{params[:id]}")
+    if current_reservation
+      data_response(current_reservation, "Data for reservation #{params[:id]}")
+    else
+      render json: { errors: current_reservation.errors, message: 'Object not found' }, status: :unprocessable_entity
+    end
   end
 
   def create
-    user = User.find(reservation_params[:user_id])
-    date = DatTime.parse(reservation_params(:reservation_date))
+    date = DateTime.parse(reservation_params[:reservation_date])
     book = Book.find(reservation_params[:book_id])
-    city = reservation_params(:city)
-    print date
-    new_reservation = user.reservations.new(reservation_date: date, city: city, book: book)
+    city = reservation_params[:city]
+    new_reservation = retrieve_user.reservations.new(reservation_date: date, city: city, book: book)
     if new_reservation.save
       data_response(new_reservation, 'Reservation Created')
     else
@@ -25,24 +25,26 @@ class Api::ReservationsController < ApplicationController
   end
 
   def destroy
-    reservation = retrieve_user
-    reservation.destroy
+    reservation = current_reservation
+    current_reservation.destroy
     data_response(reservation, 'Reservation Deleted')
   end
 
   def update
-    reservation = retrieve_user
-    if reservation.update(reservation_params)
-      data_response(reservation, 'Reservation Updated')
+    date = DateTime.parse(reservation_params[:reservation_date])
+    book = Book.find(reservation_params[:book_id])
+    city = reservation_params[:city]
+    if current_reservation.update(reservation_date: date, city: city, book: book)
+      data_response(current_reservation, 'Reservation Updated')
     else
-      render json: { data: reservation.errors, message: 'Operation failed' }, status: :unprocessable_entity
+      render json: { data: current_reservation.errors, message: 'Operation failed' }, status: :unprocessable_entity
     end
   end
 
   private
 
   def reservation_params
-    params.require(:reservation).permit(:reservation_date, :city, :user_id, :book_id)
+    params.permit(:reservation_date, :city, :book_id)
   end
 
   def data_response(data, message)
@@ -51,5 +53,9 @@ class Api::ReservationsController < ApplicationController
 
   def retrieve_user
     User.find(params[:user_id])
+  end
+
+  def current_reservation
+    retrieve_user.reservations.find(params[:id])
   end
 end
