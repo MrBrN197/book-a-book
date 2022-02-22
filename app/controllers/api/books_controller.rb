@@ -21,8 +21,18 @@ class Api::BooksController < ApplicationController
 
   def destroy
     @book = Book.find(params[:id])
-    @book.destroy
-    render json: { message: 'Book successfully deleted' }, status: :no_content
+    @book.destroy!
+    render json: { message: 'Book successfully deleted' }
+  end
+
+  def update
+    @book = Book.find(params[:id])
+
+    if @book.update(book_params)
+      render json: @book, status: :created
+    else
+      render json: @book.errors, status: :unprocessable_entity
+    end
   end
 
   private
