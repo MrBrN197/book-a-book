@@ -26,7 +26,7 @@ class Api::ReservationsController < ApplicationController
 
   def destroy
     reservation = current_reservation
-    current_reservation.destroy
+    current_reservation.destroy!
     data_response(reservation, 'Reservation Deleted')
   end
 

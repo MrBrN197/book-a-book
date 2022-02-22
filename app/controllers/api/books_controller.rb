@@ -21,7 +21,7 @@ class Api::BooksController < ApplicationController
 
   def destroy
     @book = Book.find(params[:id])
-    @book.destroy
+    @book.destroy!
     render json: { message: 'Book successfully deleted' }
   end
 
