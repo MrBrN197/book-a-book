@@ -6,9 +6,7 @@ module Api
 
     def show
       @user = User.find(params[:id])
-      render json: { user: @user }
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { error: { message: e.message } }
+      render json: { user: @user }, except: %i[created_at updated_at]
     end
   end
 end
