@@ -1,5 +1,3 @@
-
-
 module Errors
   class StandardError < ::StandardError
     def initialize(title: nil, detail: nil, status: nil, source: {})
