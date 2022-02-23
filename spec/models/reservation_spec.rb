@@ -9,8 +9,8 @@ RSpec.describe Reservation, type: :model do
       image: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1435027890l/37298.jpg'
     )
     Reservation.create!(
-      city: 'Jos', 
-      reservation_date: DateTime.strptime("09/14/2009 8:00", "%m/%d/%Y %H:%M"),
+      city: 'Jos',
+      reservation_date: DateTime.strptime('09/14/2009 8:00', '%m/%d/%Y %H:%M'),
       user: user,
       book: book
     )
@@ -39,9 +39,8 @@ RSpec.describe Reservation, type: :model do
     it 'should be invalid if reservation_date is in wrong format' do
       subject.reservation_date = '09/14/2022 13:09:48'
       expect(subject).to_not be_valid
-      subject.reservation_date = 14/4/2022
+      subject.reservation_date = 14 / 4 / 2022
       expect(subject).to_not be_valid
-
     end
   end
 end

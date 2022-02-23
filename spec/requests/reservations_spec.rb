@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Reservations requests', type: :request do
   let(:json) { JSON.parse(response.body) }
-  let(:user_attributes) { {username: 'Uhuru'} }
+  let(:user_attributes) { { username: 'Uhuru' } }
 
   before :each do
     @user = User.create! user_attributes
@@ -12,25 +12,25 @@ RSpec.describe 'Reservations requests', type: :request do
       image: 'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3BlbiUyMGJvb2t8ZW58MHx8MHx8&w=1000&q=80'
     )
     @reservation1 = @user.reservations.create!(
-      city: 'Lagos', 
-      reservation_date: DateTime.strptime("09/14/2009 8:00", "%m/%d/%Y %H:%M"),
+      city: 'Lagos',
+      reservation_date: DateTime.strptime('09/14/2009 8:00', '%m/%d/%Y %H:%M'),
       book: @book
     )
   end
 
   let(:index_request) { get api_user_reservations_url(@user), as: :json }
   let(:show_request) { get api_user_reservation_url(@user, @reservation1), as: :json }
-  let(:create_request) { 
-    post api_user_reservations_url(@user), 
-    params: { city: 'Nairobi', reservation_date: '27/02/2022 18:00:53', book_id: @book.id},
-    as: :json
-  }
+  let(:create_request) do
+    post api_user_reservations_url(@user),
+         params: { city: 'Nairobi', reservation_date: '27/02/2022 18:00:53', book_id: @book.id },
+         as: :json
+  end
   let(:delete_request) { delete api_user_reservation_url(@user, @reservation1), as: :json }
-  let(:update_request) { 
-    put api_user_reservation_url(@user, @reservation1), 
-    params: { city: 'Kampala', reservation_date: '29/03/2022 14:10:53', book_id: @book.id},
-    as: :json
-  }
+  let(:update_request) do
+    put api_user_reservation_url(@user, @reservation1),
+        params: { city: 'Kampala', reservation_date: '29/03/2022 14:10:53', book_id: @book.id },
+        as: :json
+  end
 
   describe 'api/reservations#index' do
     it 'should return a successful response' do
@@ -67,7 +67,7 @@ RSpec.describe 'Reservations requests', type: :request do
     it 'should show information about a single reservation' do
       show_request
       expect(json['data']['city']).to eq('Lagos')
-      expect(json['data']['reservation_date']).to eq("2009-09-14T08:00:00.000Z")
+      expect(json['data']['reservation_date']).to eq('2009-09-14T08:00:00.000Z')
     end
   end
 
