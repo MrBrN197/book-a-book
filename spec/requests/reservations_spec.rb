@@ -105,21 +105,21 @@ RSpec.describe 'Reservations requests', type: :request do
     end
   end
 
-  # describe 'api/reservations#update' do
-  #   it 'should return an updated status response' do
-  #     update_request
-  #     expect(response).to have_http_status(200)
-  #   end
+  describe 'api/reservations#update' do
+    it 'should return an updated status response' do
+      update_request
+      expect(response).to have_http_status(200)
+    end
 
-  #   it 'should show a message when response is successful' do
-  #     update_request
-  #     expect(json['message']).to eq('Reservation Updated')
-  #   end
+    it 'should show a message when response is successful' do
+      update_request
+      expect(json['message']).to eq('Reservation Updated')
+    end
 
-  #   it 'should show information about the reservation updated' do
-  #     update_request
-  #     expect(json['data']['city']).to eq('Kampala')
-  #     expect(json['data']['reservation_date']).to eq('2022-03-29T14:10:53.000Z')
-  #   end
-  # end
+    it 'should show information about the reservation updated' do
+      update_request
+      expect(json['data']['city']).to eq('Kampala')
+      expect(json['data']['reservation_date']).to eq('2022-03-29T14:10:53.000Z')
+    end
+  end
 end
