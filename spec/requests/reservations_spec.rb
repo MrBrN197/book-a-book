@@ -88,22 +88,22 @@ RSpec.describe 'Reservations requests', type: :request do
     end
   end
 
-  # describe 'api/reservations#delete' do
-  #   it 'should return a deleted status response' do
-  #     delete_request
-  #     expect(response).to have_http_status(200)
-  #   end
+  describe 'api/reservations#delete' do
+    it 'should return a deleted status response' do
+      delete_request
+      expect(response).to have_http_status(200)
+    end
 
-  #   it 'should show a message when response is successful' do
-  #     delete_request
-  #     expect(json['message']).to eq('Reservation Deleted')
-  #   end
+    it 'should show a message when response is successful' do
+      delete_request
+      expect(json['message']).to eq('Reservation Deleted')
+    end
 
-  #   it 'should show information about the reservation created' do
-  #     expect { delete_request }.to change { Reservation.count }.from(1).to(0)
-  #     expect(json['data']['city']).to eq('Lagos')
-  #   end
-  # end
+    it 'should show information about the reservation created' do
+      expect { delete_request }.to change { Reservation.count }.from(1).to(0)
+      expect(json['data']['city']).to eq('Lagos')
+    end
+  end
 
   # describe 'api/reservations#update' do
   #   it 'should return an updated status response' do
