@@ -39,7 +39,7 @@ RSpec.describe Reservation, type: :model do
     it 'should be invalid if reservation_date is in wrong format' do
       subject.reservation_date = '09/14/2022 13:09:48'
       expect(subject).to_not be_valid
-      subject.reservation_date = 14 / 4 / 2022
+      subject.reservation_date = 14
       expect(subject).to_not be_valid
     end
   end
