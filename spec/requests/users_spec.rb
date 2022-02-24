@@ -39,4 +39,24 @@ RSpec.describe '/users', type: :request do
       expect(response).to be_successful
     end
   end
+
+  describe 'POST /sign_up' do
+    context 'with valid parameters' do
+      let(:create_attributes) { {username: 'mikel'} }
+      it 'renders a successful response' do
+        post '/sign_up', params: create_attributes, as: :json
+        expect(response).to be_successful
+      end
+      it 'increases User\'s count by 1' do
+        expect { post '/sign_up', params: create_attributes, as: :json }.to change(User, :count).by(1)
+      end
+    end
+    context 'with invalid parameters' do
+      let(:invalid_create_attributes) { { name: 'mikel' }}
+      it 'doesn\'t create a new user without a username' do
+        post '/sign_up', params: { username: '' }, as: :json
+        expect(response).to have_http_status 500
+      end
+    end
+  end
 end
