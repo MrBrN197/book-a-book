@@ -37,7 +37,7 @@ class Api::ReservationsController < ApplicationController
     if current_reservation.update(reservation_date: date, city: city, book: book)
       data_response(current_reservation, 'Reservation Updated')
     else
-      render json: { data: current_reservation.errors, message: 'Operation failed' }, status: :unprocessable_entity
+      render json: { errors: current_reservation.errors, message: 'Operation failed' }, status: :unprocessable_entity
     end
   end
 
