@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_20_200905) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title", "author"], name: "index_books_on_title_and_author", unique: true
   end
 
   create_table "reservations", force: :cascade do |t|
