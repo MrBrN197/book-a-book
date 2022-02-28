@@ -12,9 +12,16 @@ book1 = Book.create!(
 )
 
 user = User.create!(username: 'Matumba Ngambi')
+user2 = User.create!(username: 'mrskenss382')
+user3 = User.create!(username: '_soofy32')
 
 reservation1 = user.reservations.create!(
     city: 'Lagos', 
+    reservation_date: DateTime.strptime("09/14/2009 8:00", "%m/%d/%Y %H:%M"),
+    book: book1
+)
+reservation2 = user.reservations.create!(
+    city: 'Olso', 
     reservation_date: DateTime.strptime("09/14/2009 8:00", "%m/%d/%Y %H:%M"),
     book: book1
 )

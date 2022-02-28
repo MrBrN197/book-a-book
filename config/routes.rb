@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :horses
   namespace :api, defaults: {format: :json} do
     resources :users do
       resources :reservations 
@@ -12,5 +11,6 @@ Rails.application.routes.draw do
 
   post '/login', to: 'api/users#login'
   post '/sign_up', to: 'api/users#sign_up'
+  post '/token', to: 'api/users#token'
 
 end
