@@ -94,6 +94,7 @@ RSpec.describe 'Reservations requests', type: :request do
       expect(json['data']['price']).to eq('25.5')
       expect(json['data']['genre']).to eq('Drama')
       expect(json['data']['price']).to eq('25.5')
+      expect(json['data']['author']).to eq('Wole Soyinka')
     end
   end
 end
