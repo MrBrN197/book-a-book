@@ -9,7 +9,12 @@ RSpec.describe 'Reservations requests', type: :request do
     @book = Book.create!(
       title: 'The Lion and Jewel',
       author: 'Wole Soyinka',
-      image: 'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3BlbiUyMGJvb2t8ZW58MHx8MHx8&w=1000&q=80'
+      image: 'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3BlbiUyMGJvb2t8ZW58MHx8MHx8&w=1000&q=80',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Pellentesque blandit imperdiet quam, nec mattis purus semper eget. Aliquam vel varius ipsum.',
+      price: 25.5,
+      rating: 5,
+      genre: 'Drama'
     )
     @reservation1 = @user.reservations.create!(
       city: 'Lagos',

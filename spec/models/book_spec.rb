@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Reservation, type: :model do
+RSpec.describe Book, type: :model do
   subject do
     book = Book.new(
       title: 'Mind Prey',
