@@ -65,5 +65,22 @@ RSpec.describe Reservation, type: :model do
       subject.price = 0
       expect(subject).to_not be_valid
     end
+
+    it 'should be invalid if price column is blank' do
+      subject.price = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be invalid if rating is negative or equal to zero' do
+      subject.rating = -5
+      expect(subject).to_not be_valid
+      subject.rating = 0
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be invalid if rating column is blank' do
+      subject.rating = nil
+      expect(subject).to_not be_valid
+    end
   end
 end
