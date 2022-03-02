@@ -32,6 +32,8 @@ RSpec.describe 'Reservations requests', type: :request do
         },
          as: :json
   end
+  let(:delete_request) { delete api_book_url(@book), as: :json }
+
 
   describe 'api/books#index' do
     it 'should return a successful response' do
@@ -73,6 +75,25 @@ RSpec.describe 'Reservations requests', type: :request do
       expect { create_request }.to change { Book.count }.from(1).to(2)
       expect(json['data']['title']).to eq('The Punisher')
       expect(json['data']['author']).to eq('Stan Lee')
+    end
+  end
+
+  describe 'api/books#delete' do
+    it 'should return a successful response' do
+      delete_request
+      expect(response).to have_http_status(200)
+    end
+
+    it 'should show a message when response is successful' do
+      delete_request
+      expect(json['message']).to eq('Book successfully deleted')
+    end
+
+    it 'should show information about the book deleted' do
+      expect { delete_request }.to change { Book.count }.from(1).to(0)
+      expect(json['data']['price']).to eq('25.5')
+      expect(json['data']['genre']).to eq('Drama')
+      expect(json['data']['price']).to eq('25.5')
     end
   end
 end

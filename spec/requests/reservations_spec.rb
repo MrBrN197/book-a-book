@@ -104,7 +104,7 @@ RSpec.describe 'Reservations requests', type: :request do
       expect(json['message']).to eq('Reservation Deleted')
     end
 
-    it 'should show information about the reservation created' do
+    it 'should show information about the reservation deleted' do
       expect { delete_request }.to change { Reservation.count }.from(1).to(0)
       expect(json['data']['city']).to eq('Lagos')
     end
