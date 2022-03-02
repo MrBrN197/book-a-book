@@ -77,7 +77,7 @@ RSpec.describe 'Reservations requests', type: :request do
   end
 
   describe 'api/reservations#create' do
-    it 'should return a created response' do
+    it 'should return a successful response' do
       create_request
       expect(response).to have_http_status(200)
     end
