@@ -9,7 +9,12 @@ RSpec.describe 'Reservations requests', type: :request do
     @book = Book.create!(
       title: 'The Lion and Jewel',
       author: 'Wole Soyinka',
-      image: 'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3BlbiUyMGJvb2t8ZW58MHx8MHx8&w=1000&q=80'
+      image: 'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3BlbiUyMGJvb2t8ZW58MHx8MHx8&w=1000&q=80',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Pellentesque blandit imperdiet quam, nec mattis purus semper eget. Aliquam vel varius ipsum.',
+      price: 25.5,
+      rating: 5,
+      genre: 'Drama'
     )
     @reservation1 = @user.reservations.create!(
       city: 'Lagos',
@@ -72,7 +77,7 @@ RSpec.describe 'Reservations requests', type: :request do
   end
 
   describe 'api/reservations#create' do
-    it 'should return a created response' do
+    it 'should return a successful response' do
       create_request
       expect(response).to have_http_status(200)
     end
@@ -99,14 +104,14 @@ RSpec.describe 'Reservations requests', type: :request do
       expect(json['message']).to eq('Reservation Deleted')
     end
 
-    it 'should show information about the reservation created' do
+    it 'should show information about the reservation deleted' do
       expect { delete_request }.to change { Reservation.count }.from(1).to(0)
       expect(json['data']['city']).to eq('Lagos')
     end
   end
 
   describe 'api/reservations#update' do
-    it 'should return an updated status response' do
+    it 'should return a successful response' do
       update_request
       expect(response).to have_http_status(200)
     end
