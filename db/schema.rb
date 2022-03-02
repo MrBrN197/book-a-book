@@ -46,6 +46,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_20_200905) do
     t.string "title"
     t.string "author"
     t.string "image"
+    t.text "description"
+    t.decimal "price"
+    t.decimal "rating"
+    t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title", "author"], name: "index_books_on_title_and_author", unique: true

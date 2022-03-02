@@ -4,6 +4,10 @@ class CreateBooks < ActiveRecord::Migration[7.0]
       t.string :title
       t.string :author
       t.string :image
+      t.text :description
+      t.numeric :price
+      t.decimal :rating
+      t.string :genre
       t.index [:title, :author], unique: true
 
       t.timestamps
