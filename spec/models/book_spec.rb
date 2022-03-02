@@ -18,5 +18,25 @@ RSpec.describe Reservation, type: :model do
     it 'should be a valid book' do
       expect(subject).to be_valid
     end
+
+    it 'should be invalid if title attribute is more than 100 characters' do
+      subject.title = 'c' * 101
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be invalid if title column is blank' do
+      subject.title = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be invalid if author attribute is more than 100 characters' do
+      subject.author = 'c' * 101
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be invalid if author column is blank' do
+      subject.author = nil
+      expect(subject).to_not be_valid
+    end
   end
 end
