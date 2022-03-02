@@ -33,6 +33,20 @@ RSpec.describe 'Reservations requests', type: :request do
          as: :json
   end
   let(:delete_request) { delete api_book_url(@book), as: :json }
+  let(:update_request) do
+    put api_book_url(@book),
+        params: { 
+          title: 'The Game Changer',
+          author: 'Gambit Marye',
+          image: 'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3BlbiUyMGJvb2t8ZW58MHx8MHx8&w=1000&q=80',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Pellentesque blandit imperdiet quam, nec mattis purus semper eget. Aliquam vel varius ipsum.',
+          price: 50.5,
+          rating: 5,
+          genre: 'Biography'
+        },
+         as: :json
+  end
 
 
   describe 'api/books#index' do
@@ -95,6 +109,19 @@ RSpec.describe 'Reservations requests', type: :request do
       expect(json['data']['genre']).to eq('Drama')
       expect(json['data']['price']).to eq('25.5')
       expect(json['data']['author']).to eq('Wole Soyinka')
+    end
+  end
+
+  describe 'api/books#update' do
+    it 'should return a created response' do
+      update_request
+      expect(response).to have_http_status(201)
+    end
+
+    it 'should show information about the book updated' do
+      update_request
+      expect(json['data']['title']).to eq('The Game Changer')
+      expect(json['data']['author']).to eq('Gambit Marye')
     end
   end
 end

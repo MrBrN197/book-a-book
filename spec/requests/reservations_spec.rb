@@ -111,7 +111,7 @@ RSpec.describe 'Reservations requests', type: :request do
   end
 
   describe 'api/reservations#update' do
-    it 'should return an updated status response' do
+    it 'should return a successful response' do
       update_request
       expect(response).to have_http_status(200)
     end
