@@ -58,5 +58,12 @@ RSpec.describe Reservation, type: :model do
       subject.description = nil
       expect(subject).to_not be_valid
     end
+
+    it 'should be invalid if amount is negative or equal to zero' do
+      subject.price = -2
+      expect(subject).to_not be_valid
+      subject.price = 0
+      expect(subject).to_not be_valid
+    end
   end
 end
