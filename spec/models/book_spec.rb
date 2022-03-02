@@ -38,5 +38,25 @@ RSpec.describe Reservation, type: :model do
       subject.author = nil
       expect(subject).to_not be_valid
     end
+
+    it 'should be invalid if genre attribute is more than 100 characters' do
+      subject.genre = 'c' * 101
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be invalid if genre column is blank' do
+      subject.genre = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be invalid if image column is blank' do
+      subject.image = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be invalid if description column is blank' do
+      subject.description = nil
+      expect(subject).to_not be_valid
+    end
   end
 end
