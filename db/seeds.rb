@@ -10,18 +10,7 @@ user1 = User.create!(username: 'matumba')
 user2 = User.create!(username: 'mrberry')
 user3 = User.create!(username: 'soofy_32')
 
-reservation1 = user1.reservations.create!(
-    city: 'Lagos', 
-    reservation_date: DateTime.strptime("09/14/2009 8:00", "%m/%d/%Y %H:%M"),
-    book: book1
-)
-reservation2 = user1.reservations.create!(
-    city: 'Olso', 
-    reservation_date: DateTime.strptime("09/14/2009 8:00", "%m/%d/%Y %H:%M"),
-    book: book1
-)
-
-Book.create!(
+book1 = Book.create!(
     title: "A Song Of Ice and Fire",
     author: "George R.R Martin",
     image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1376738412l/18337259.jpg",
@@ -30,25 +19,25 @@ Book.create!(
     price: 14.95,
     genre: 'Fantasy'
 )
-Book.create!(
+book2 = Book.create!(
     title: "Mockingjay",
     author: "Suzanne Collins",
     image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1586722918l/7260188._SY475_.jpg",
     description: "Katniss Everdeen, girl on fire, has survived, even though her home has been destroyed. Gale has escaped. Katniss's family is safe. Peeta has been captured by the Capitol. District 13 really does exist. There are rebels. There are new leaders. A revolution is unfolding.",
     rating: 4.06,
     price: 16.25,
-    genre: ''
+    genre: 'Fiction'
 )
-Book.create!(
+book3 = Book.create!(
     title: "The Fault in our Stars",
     author: "John Green",
     image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1632632557l/11870085.jpg",
     description: "Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel's story is about to be completely rewritten.",
     rating: 4.17,
     price: 23.45,
-    genre: 'Fiction'
+    genre: 'Romance'
 )
-Book.create!(
+book4 = Book.create!(
     title: "Olivia and the Fairy Princesses",
     author: "Ian Falconer",
     image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1340327711l/13546400.jpg",
@@ -57,7 +46,7 @@ Book.create!(
     price: 5.65,
     genre: 'Childrens'
 )
-Book.create!(
+book5 = Book.create!(
     title: "The Last Thing He Told Me",
     author: "Laura Dave",
     image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1603034599l/54981009.jpg",
@@ -66,7 +55,7 @@ Book.create!(
     price: 12.20,
     genre: 'Mystery'
 )
-Book.create!(
+book6 = Book.create!(
     title: "Malibu Rising",
     author: "Taylor Jenkins",
     image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1618293107l/55404546.jpg",
@@ -75,7 +64,7 @@ Book.create!(
     price: 18.95,
     genre: 'Fiction'
 )
-Book.create!(
+book7 = Book.create!(
     title: "People We Meet on Vacation",
     author: "Emily Henry",
     image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1618913179l/54985743.jpg",
@@ -84,7 +73,7 @@ Book.create!(
     price: 14.35,
     genre: 'Romance'
 )
-Book.create!(
+book8 = Book.create!(
     title: "The Hill We Climb: An Inaugural Poem for the Country",
     author: "Amanda Gorman",
     image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1612178266l/56914101.jpg",
@@ -93,12 +82,47 @@ Book.create!(
     price: 24.95,
     genre: 'Poetry'
 )
-Book.create!(
+book9 = Book.create!(
     title: "Black Girl, Call Home",
     author: "Jasmine Mans",
     image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1605310476l/54359466.jpg",
     description: "With echoes of Gwendolyn Brooks and Sonia Sanchez, Mans writes to call herself—and us—home. Each poem explores what it means to be a daughter of Newark, and America--and the painful, joyous path to adulthood as a young, queer Black woman.",
-    rating: ,
+    rating: 4.45,
     price: 18.45,
     genre: 'Poetry'
+)
+
+reservation1 = user1.reservations.create!(
+    city: 'Lagos', 
+    reservation_date: DateTime.strptime("05/14/2022 14:30", "%m/%d/%Y %H:%M"),
+    book: book1
+)
+reservation2 = user1.reservations.create!(
+    city: 'Oslo', 
+    reservation_date: DateTime.strptime("03/13/2022 08:00", "%m/%d/%Y %H:%M"),
+    book: book2
+)
+
+reservation3 = user1.reservations.create!(
+    city: 'Nairobi', 
+    reservation_date: DateTime.strptime("10/10/2022 18:30", "%m/%d/%Y %H:%M"),
+    book: book4
+)
+
+reservation4 = user1.reservations.create!(
+    city: 'New York', 
+    reservation_date: DateTime.strptime("07/07/2022 23:00", "%m/%d/%Y %H:%M"),
+    book: book5
+)
+
+reservation5 = user1.reservations.create!(
+    city: 'Kampala', 
+    reservation_date: DateTime.strptime("04/01/2022 07:00", "%m/%d/%Y %H:%M"),
+    book: book7
+)
+
+reservation6 = user1.reservations.create!(
+    city: 'California', 
+    reservation_date: DateTime.strptime("03/13/2022 09:00", "%m/%d/%Y %H:%M"),
+    book: book9
 )
