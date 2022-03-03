@@ -1,0 +1,207 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/books":
+    get:
+      summary: list books
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create book
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                author:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+                genre:
+                  type: string
+                price:
+                  type: integer
+                rating:
+                  type: integer
+              required:
+              - title
+              - author
+              - description
+              - image
+              - genre
+              - price
+              - rating
+  "/api/books/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show book
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update book
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update book
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete book
+      responses:
+        '200':
+          description: successful
+  "/api/users/{user_id}/reservations":
+    parameters:
+    - name: user_id
+      in: path
+      description: user_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list reservations
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create reservation
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                city:
+                  type: string
+                reservation_date:
+                  type: string
+                  format: datetime
+                book_id:
+                  type: integer
+              required:
+              - city
+              - reservation_date
+              - description
+              - book_id
+  "/api/users/{user_id}/reservations/{id}":
+    parameters:
+    - name: user_id
+      in: path
+      description: user_id
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show reservation
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update reservation
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update reservation
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete reservation
+      responses:
+        '200':
+          description: successful
+  "/api/users":
+    get:
+      summary: list users
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create user
+      responses:
+        '200':
+          description: successful
+  "/api/users/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show user
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update user
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update user
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete user
+      responses:
+        '200':
+          description: successful
+  "/login":
+    post:
+      summary: login user
+      responses:
+        '200':
+          description: successful
+  "/sign_up":
+    post:
+      summary: sign_up user
+      responses:
+        '200':
+          description: successful
+  "/token":
+    post:
+      summary: token user
+      responses:
+        '200':
+          description: successful
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: book-a-book-api.herokuapp.com
