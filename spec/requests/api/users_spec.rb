@@ -1,12 +1,9 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/users', type: :request do
-
   path '/api/users' do
-
     get('list users') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -20,7 +17,6 @@ RSpec.describe 'api/users', type: :request do
 
     post('create user') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -33,7 +29,10 @@ RSpec.describe 'api/users', type: :request do
     end
   end
 
+  # rubocop:disable Metrics/BlockLength
   path '/api/users/{id}' do
+    # rubocop:enable Metrics/BlockLength
+
     # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
@@ -99,10 +98,8 @@ RSpec.describe 'api/users', type: :request do
   end
 
   path '/login' do
-
     post('login user') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -116,10 +113,8 @@ RSpec.describe 'api/users', type: :request do
   end
 
   path '/sign_up' do
-
     post('sign_up user') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -133,10 +128,8 @@ RSpec.describe 'api/users', type: :request do
   end
 
   path '/token' do
-
     post('token user') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

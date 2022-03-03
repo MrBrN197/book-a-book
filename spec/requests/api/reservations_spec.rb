@@ -1,7 +1,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/reservations', type: :request do
-
+  # rubocop:disable Metrics/BlockLength
   path '/api/users/{user_id}/reservations' do
     # You'll want to customize the parameter types...
     parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
@@ -30,7 +30,7 @@ RSpec.describe 'api/reservations', type: :request do
           properties: {
             city: { type: :string },
             reservation_date: { type: :string, format: :datetime },
-            book_id: { type: :integer },
+            book_id: { type: :integer }
           },
           required: %w[city reservation_date description book_id]
         }
@@ -48,6 +48,7 @@ RSpec.describe 'api/reservations', type: :request do
   end
 
   path '/api/users/{user_id}/reservations/{id}' do
+    # rubocop:enable Metrics/BlockLength
     # You'll want to customize the parameter types...
     parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
     parameter name: 'id', in: :path, type: :string, description: 'id'
