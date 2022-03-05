@@ -47,10 +47,6 @@ class Api::ReservationsController < ApplicationController
     params.permit(:reservation_date, :city, :book_id)
   end
 
-  def data_response(data, message)
-    render json: { data: data, message: message }, except: %i[created_at updated_at]
-  end
-
   def retrieve_user
     User.find(params[:user_id])
   end
