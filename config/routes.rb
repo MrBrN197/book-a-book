@@ -2,13 +2,13 @@ Rails.application.routes.draw do
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   namespace :api, defaults: {format: :json} do
-    resources :users do
-      resources :reservations 
+    resources :users, only: %i[show index] do
+      resources :reservations
     end
   end
 
   namespace :api, defaults: {format: :json} do
-    resources :books 
+    resources :books
   end
 
   post '/login', to: 'api/users#login'
