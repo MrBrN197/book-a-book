@@ -44,7 +44,7 @@ to test simply run `rspec`
 
 👤 **Francis Ugorji**
 
-- GitHub: [@MrBrN197](https://github.com/Gambit142)
+- GitHub: [@Gambit142](https://github.com/Gambit142)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/francis-ugorji/)
 
 ## 🤝 Contributing
